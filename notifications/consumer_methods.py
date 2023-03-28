@@ -8,3 +8,7 @@ class NotificationConsumer:
     @classmethod
     def print_students_list(cls):
         print(cls.body)
+
+    #@classmethod
+    #def test_publisher(cls):
+    #    print(cls.body)

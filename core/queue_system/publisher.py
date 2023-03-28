@@ -39,16 +39,3 @@ class BasePublisher(object):
         channel.close()
         connection.close()
 
-
-def publish():
-    bp = BasePublisher(
-        routing_key="tests",
-        body={
-            "name": "Paul Ndambo",
-            "age": 24,
-            "school": "Masinde Muliro University of Sci. & Tech.",
-            "specialty": "Cloud, Backend & DevOps Software Engineer"
-        })
-    bp.run()
-
-publish()

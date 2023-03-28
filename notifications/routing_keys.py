@@ -1,6 +1,7 @@
 ROUTING_KEYS = {
     "messages": {
-        "hello_world.created": ["hello_world"],
-        "print_students_list.created": ["print_students_list"]
+        "hello_world": ["hello_world"],
+        "print_students_list": ["print_students_list"],
+        #"test_publisher": ["test_publisher"]
     }
 }

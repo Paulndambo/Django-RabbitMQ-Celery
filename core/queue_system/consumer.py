@@ -28,13 +28,12 @@ class BaseConsumer(object):
         #self._consume_message()
 
     def base_consume(self):
-        self.channel.basic_consume(
-            self.__callback, queue=self.queue, auto_ack=True)
+        self.channel.basic_consume(self.queue, self.__callback, auto_ack=True)
         self.channel.start_consuming()
 
 
     def __make_connection(self):
-        params = pika.URLParameters(self.url)
+        params = pika.URLParameters(url)
         self.connection = pika.BlockingConnection(params)
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=self.queue)
@@ -50,8 +49,8 @@ class BaseConsumer(object):
             exchange=self.exchange, exchange_type=self.exchange_type)
 
 
-    def __callback(ch, method, properties, body):
-        for consumer_method in ROUTING_KEYS:
+    def __callback(self, ch, method, properties, body):
+        for consumer_method in ROUTING_KEYS[self.consumer_name][method.routing_key]:
             NotificationConsumer.body = body
             getattr(NotificationConsumer, consumer_method)()
            
