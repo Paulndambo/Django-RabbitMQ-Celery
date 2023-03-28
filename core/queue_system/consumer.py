@@ -15,17 +15,14 @@ class BaseConsumer(object):
     
     def __init__(self):
         self.url = url
-    #    self.exchange = "test_exchange"
-    #    self.queue = "test_queue"
-        #self.routing_key = routing_key
-        #self.body = body
+
 
     def init_consumer(self):
         self.__make_connection()
         self.__queue_declare()
         self.__exchange_declare()
         self.__bind_queue()
-        #self._consume_message()
+        
 
     def base_consume(self):
         self.channel.basic_consume(self.queue, self.__callback, auto_ack=True)
@@ -38,7 +35,6 @@ class BaseConsumer(object):
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue=self.queue)
         
-        #return channel, connection
 
     def __queue_declare(self):
         self.channel.queue_declare(queue=self.queue)
