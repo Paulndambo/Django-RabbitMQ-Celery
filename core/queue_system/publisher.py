@@ -4,7 +4,6 @@ import os, pika
 import json
 url = os.environ.get('CLOUDAMQ_URL', 'amqp://guest:guest@localhost:5672/')
 
-
 class BasePublisher(object):
     def __init__(self, routing_key, body) -> None:
         self.exchange = "test_exchange"
